@@ -50,7 +50,7 @@ npx typeorm migration:create ./src/migration/create_table_state
 npx typeorm migration:create ./src/migration/create_table_city
 npx typeorm migration:create ./src/migration/create_table_address
 
-## ventas
+## CREAR TABLAS - REFFERENCIAS DE EJEMPLO
 npx typeorm migration:create ./src/migration/create_table_category
 npx typeorm migration:create ./src/migration/create_table_product
 

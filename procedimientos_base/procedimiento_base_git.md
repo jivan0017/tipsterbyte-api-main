@@ -1,7 +1,13 @@
 - conectar:
 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
 
+- con SSH:
+git remote add origin git remote add origin git@github.com:jivan0017/tipsterbyte-api-main.git
+
+- esto no por ahora!
 git remote add origin https://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@github.com/jaimediaz817/ventas-nest-api.git
+
+- esto no por ahora!
 git remote set-url origin https://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@github.com/jaimediaz817/ventas-nest-api.git
 
 - Settear el ssh:
@@ -13,6 +19,8 @@ https://www.youtube.com/watch?v=g0ZV-neSM7E
 - creando clave ssh asimetrica
  ssh-keygen -t ed25519 -C "jaimeivan0017@gmail.com"
 
+
+# ESTO ES EN PRODUCCIÓN - VPS
  - agregar la clave al agente ssh
  eval `ssh-agent -s`
 

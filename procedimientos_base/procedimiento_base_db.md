@@ -38,7 +38,7 @@ docker-compose stop
 
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://memodevs.com/repo_images/tipsterbyte/succ_docker_posgresqql.png" width="800" alt="Nest Logo" /></a>
+  <a href="https://memodevs.com/repo_images/tipsterbyte/succ_docker_posgresqql.png" target="_blank"><img src="https://memodevs.com/repo_images/tipsterbyte/succ_docker_posgresqql.png" width="1200" alt="Nest Logo" /></a>
 </p>
 
 -------------------------------------------------------------------------

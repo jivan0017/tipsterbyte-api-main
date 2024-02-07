@@ -27,12 +27,15 @@ services:
       - 5432:5432
 
 
+# SUBIR IMAGEN DOCKER
 - Ejecutar el comando para subir la imagen:
 docker-compose up
 
 - Ejecutar el comando para bajar la imagen:
 docker-compose stop
 
+- Descargara DBeaver y configurar de la siguiente manera teniendo en cuenta los datos de conexión del fichero docker-compose.yaml, captura de pantalla:
+https://prnt.sc/bVDslYf-26iD
 
 -------------------------------------------------------------------------
 

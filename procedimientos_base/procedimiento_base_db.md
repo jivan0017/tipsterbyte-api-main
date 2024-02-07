@@ -38,7 +38,7 @@ docker-compose stop
 
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://prnt.sc/bVDslYf-26iD" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://drive.google.com/file/d/1g98-oMGLyTLFlmwqEC4F0RF4R7ddzCLJ/view?usp=drive_link" width="200" alt="Nest Logo" /></a>
 </p>
 
 -------------------------------------------------------------------------

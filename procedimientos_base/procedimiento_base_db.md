@@ -35,7 +35,11 @@ docker-compose up
 docker-compose stop
 
 - Descargara DBeaver y configurar de la siguiente manera teniendo en cuenta los datos de conexión del fichero docker-compose.yaml, captura de pantalla:
-https://prnt.sc/bVDslYf-26iD
+
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/imghttps://prnt.sc/bVDslYf-26iD" width="200" alt="Nest Logo" /></a>
+</p>
 
 -------------------------------------------------------------------------
 

@@ -4,6 +4,12 @@ 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
 - con SSH:
 git remote add origin git remote add origin git@github.com:jivan0017/tipsterbyte-api-main.git
 
+- crear rama main en local y pasarnos a ella:
+ git checkout -b main
+
+- subir cambios al repositorio main:
+git push -u origin main
+
 - esto no por ahora!
 git remote add origin https://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@github.com/jaimediaz817/ventas-nest-api.git
 
@@ -34,4 +40,5 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEu/+THzDSVtiv5mn/EqEXUg4c0pvMDPZKv4TLt8ohT1
 
 - enlace
 git remote set-url origin git@github.com:jivan0017/ventas-udemy-api.git
+git remote set-url origin https://github.com/jivan0017/tipsterbyte-api-main.git
 

@@ -5,6 +5,7 @@ export class EnviromentConfig {
   static readonly PROJECT_ENVIROMENT= process.env.PROJECT_ENVIROMENT;
   static readonly HASH_SALT= +process.env.HASH_SALT;
 
+  // TODO: agregar: dist/**/*.entity{.js,.ts}
   static readonly ENTITIES_DIRNAME = `/../../**/*.entity{.ts,.js}`;
   static readonly ENTITIES_DIRNAME_THREE_LEVELS = `/../../../**/*.entity{.ts,.js}`;
   static readonly ENTITIES_DIRNAME_DIST = `dist/**/*.entity{.ts,.js}`;

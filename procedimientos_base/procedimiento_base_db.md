@@ -30,6 +30,13 @@ services:
 # SUBIR IMAGEN DOCKER
 - Ejecutar el comando para subir la imagen:
 docker-compose up
+docker-compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.mysql.yml up -p 3307:3306 --name 
+mysql-docker-test -d
+ocker-compose -f docker-compose-mysql.yml up -d
+
+- para bajara imagen:
+docker-compose -f docker-compose.prod.yml down
 
 - Ejecutar el comando para bajar la imagen:
 docker-compose stop
@@ -65,3 +72,15 @@ npx typeorm migration:create ./src/migration/insert-root-in-user
 
 - Agregar columna
 npx typeorm migration:create ./src/migration/alter-table-user
+
+# MYSQL DOCKER:
+
+- COORER:
+  docker container run -d --name=mysql-docker -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret mysql:8.0.36
+
+docker run -p 3307:3306 --name mysql-docker e MYSQL_ROOT_PASSWORD=secret -d mysql:8.0.36
+docker exec -it mysql-docker mysql -p
+create database tipsterbyte_main;
+ -
+ docker images
+ docker ps

@@ -22,5 +22,5 @@ npm install --save-dev @types/passport-local
 
 # JWT
 - comandos:
-npm install --save @nestjs/jwt passport-jwt
+npm install --save @nestjs/jwt passport
 npm install --save-dev @types/passport-jwt

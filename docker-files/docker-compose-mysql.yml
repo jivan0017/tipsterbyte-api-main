@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  tipsterbyte_main_mysql_test:
+    image: mysql:8.0.36
+    container_name: tipsterbyte_main_mysql_test
+    restart: always
+    environment:
+      MYSQL_DATABASE: tipsterbyte_main
+      MYSQL_USER: tipsterbyte_main_admin
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - C:\Users\user\AppData\mysql\data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    

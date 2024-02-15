@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  tipsterbyte_main_pg:
+    image: postgres:15.1
+    container_name: tipsterbyte_main_pg
+    restart: always
+    environment:
+      POSTGRES_DB: tipsterbyte_main    
+      POSTGRES_USER: tipsterbyte_main_admin
+      POSTGRES_PASSWORD: secret1234
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    

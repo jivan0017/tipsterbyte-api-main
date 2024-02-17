@@ -1,7 +1,7 @@
 import { CreateUserDto } from "../dto/create-user.dto";
 
 export const createUserMock: CreateUserDto = {
-    // cpf: 'cpf 01',
+    cpf: 'cpf 01',
     email: 'email@test.com',
     name: 'name',
     password: 'password',

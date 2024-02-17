@@ -5,5 +5,6 @@ export const returnUserDtoMock: ReturnUserDto = {
     email: "test@test.com",
     phone: "3205545454",
     cpf: "cpf test",
+    
     typeUser: 1
 }

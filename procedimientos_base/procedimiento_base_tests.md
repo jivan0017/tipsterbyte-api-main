@@ -12,3 +12,4 @@ npm run test src/user/__tests__/user.controller.spec.ts
 npm run test src/category/__tests__/category.service.spec.ts
 
 npm run test src/product/__tests__/product.service.spec.ts
+npm run test src/product/__tests__/product.controller.spec.ts

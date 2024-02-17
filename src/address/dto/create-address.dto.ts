@@ -9,11 +9,11 @@ export class CreateAddressDto {
     @IsOptional()
     complement: string;
 
-    @IsInt()
-    numberAddress: number;
-
     @IsString()
-    cep: string;
+    numberAddress: string;
+
+    // @IsString()
+    // cep: string;
 
     @IsInt()
     cityId: number;    

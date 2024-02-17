@@ -1,9 +1,11 @@
 import { CityEntity } from "../../city/entities/city.entity";
 import { UserEntity } from "../../user/entities/user.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IAddress } from "../interfaces/address.interface";
 
 @Entity({ name: 'address' })
-export class AddressEntity {
+export class AddressEntity implements IAddress{
+    name: string;
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -23,13 +25,7 @@ export class AddressEntity {
         name: 'number',
         nullable: false
     })
-    numberAddress: number;
-
-    @Column({        
-        name: 'cep',
-        nullable: false
-    })
-    cep: string;
+    numberAddress: string;
 
     @Column({        
         name: 'city_id',

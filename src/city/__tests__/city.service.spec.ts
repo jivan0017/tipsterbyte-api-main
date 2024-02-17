@@ -3,7 +3,6 @@ import { CityService } from '../city.service';
 import { Repository } from 'typeorm';
 import { CityEntity } from '../entities/city.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CacheService } from '../../cache/cache.service';
 import { cityMock } from '../__mocks__/city.mock';
 
 describe('CityService', () => {
@@ -16,15 +15,10 @@ describe('CityService', () => {
             providers: [
                 CityService,
                 {
-                    provide: CacheService,
-                    useValue: {
-                        getCache: jest.fn().mockResolvedValue([cityMock]),
-                    },
-                },
-                {
                     provide: getRepositoryToken(CityEntity),
                     useValue: {
                         findOne: jest.fn().mockResolvedValue(cityMock),
+                        find: jest.fn().mockResolvedValue(cityMock),
                     },
                 },                
             ],
@@ -55,8 +49,8 @@ describe('CityService', () => {
 
     it('should be defined get cities in getAllCitiesByStateId city',async () => {
         const city = await service.getAllCitiesByStateId(cityMock.id);
-
-        expect(city).toEqual([cityMock]);
+        console.log(">>> city ", city)
+        expect(city).toEqual(cityMock);
     });
 
 });

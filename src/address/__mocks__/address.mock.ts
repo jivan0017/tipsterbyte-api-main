@@ -6,9 +6,9 @@ export const addressMock: AddressEntity = {
     id: 1,
     userId: userEntityMock.id,
     complement: "complement",
-    numberAddress: 33,
-    cep: "cep",
+    numberAddress: "33",
     cityId: cityMock.id,
     createdAt: new Date(),
     updatedAt: new Date(),
+    name: ""
 }

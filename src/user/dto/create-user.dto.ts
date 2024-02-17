@@ -16,8 +16,8 @@ export class CreateUserDto implements IUser {
   @IsString()
   password: string;
 
-//   @IsString()
-//   cpf: string;
+  @IsString()
+  cpf: string;
 
   typeUser: number;
 }

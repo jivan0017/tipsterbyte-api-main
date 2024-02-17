@@ -4,16 +4,17 @@ export class EnviromentConfig {
   // GENERAL
   static readonly PROJECT_ENVIROMENT= process.env.PROJECT_ENVIROMENT;
   static readonly HASH_SALT= +process.env.HASH_SALT;
-
-  // TODO: agregar: dist/**/*.entity{.js,.ts}
+  
   static readonly ENTITIES_DIRNAME = `/../../**/*.entity{.ts,.js}`;
   static readonly ENTITIES_DIRNAME_THREE_LEVELS = `/../../../**/*.entity{.ts,.js}`;
+  // TODO: agregar: dist/**/*.entity{.js,.ts}
   static readonly ENTITIES_DIRNAME_DIST = `dist/**/*.entity{.ts,.js}`;
 
   static readonly MIGRATIONS_DIRNAME = `/migration/*{.ts,*.js}`;
   static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH = `/migration/{.ts,*.js}`;
   static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH_V2 = `/src/migration/{.ts,*.js}`;
-  static readonly MIGRATIONS_DIRNAME_DIST = `dist/db/migration/*{.ts,.js}`;
+  // TODO: dist/migration/**/*{.ts,.js}
+  static readonly MIGRATIONS_DIRNAME_DIST = `dist/migration/**/*{.ts,.js}`; // TODO: evaluar `dist/db/migration/*{.ts,.js}`;
 
   static readonly MIGRATIONS_TABLE_NAME = 'migrations'; 
 

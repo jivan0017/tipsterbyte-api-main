@@ -7,7 +7,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { CityModule } from './city/city.module';
 import { StateModule } from './state/state.module';
-import { AddressModule } from './address/address.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guards';
 
@@ -24,7 +23,6 @@ import { RolesGuard } from './guards/roles.guards';
     UserModule,
     StateModule,
     CityModule,
-    AddressModule,
     AuthModule,
     JwtModule,    
   ],

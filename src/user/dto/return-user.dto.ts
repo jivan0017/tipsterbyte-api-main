@@ -1,25 +1,31 @@
-import { ReturnAddressDto } from "../../address/dto/return-address.dto";
+import { PersonEntity } from "../entities/person.entity";
 import { UserEntity } from "../entities/user.entity";
+import { IUser } from "../interfaces/user/user.interface";
 
-export class ReturnUserDto {
-    // id: number;
-    name: string;
-    email: string;
-    phone: string;
-    cpf: string;
-    typeUser: number;
-    addresses?: ReturnAddressDto[];
+export class ReturnUserDto implements IUser  {
+    username: string;
+    email: string;    
+    typeUser: number;    
+    password: string;
+    status: boolean;
+    resetPasswordToken: string;
+    activationAccount: boolean;
+    activationCode: string;
+    profile?: PersonEntity; 
 
     constructor(userEntity: UserEntity) {
         // this.id = userEntity.id; 
-        this.name = userEntity.name;
+        this.username = userEntity.username;
         this.email = userEntity.email;
-        this.phone = userEntity.phone;
-        this.cpf = userEntity.cpf;
         this.typeUser = userEntity.typeUser;
+        this.password = null;
+        this.status = userEntity.status;
+        this.resetPasswordToken  =  userEntity.resetPasswordToken;
+        this.activationAccount  =  userEntity.activationAccount;
+        this.activationCode  =  userEntity.activationCode;
 
-        this.addresses = userEntity.addresses 
-            ? userEntity.addresses.map((address) => new ReturnAddressDto(address))
-            : undefined;
+        this.profile = userEntity.profile 
+            ? userEntity.profile = userEntity.profile
+            : undefined;        
     }
 }

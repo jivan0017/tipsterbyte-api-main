@@ -1,10 +1,12 @@
 import { ReturnUserDto } from "../dto/return-user.dto";
 
 export const returnUserDtoMock: ReturnUserDto = {
-    name: "test",
+    username: "test",
     email: "test@test.com",
-    phone: "3205545454",
-    cpf: "cpf test",
-    
-    typeUser: 1
+    typeUser: 1,
+    password: "",
+    status: false,
+    resetPasswordToken: "",
+    activationAccount: false,
+    activationCode: ""
 }

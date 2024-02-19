@@ -33,7 +33,10 @@ docker-compose up
 docker-compose -f docker-compose.prod.yml up -d
 docker-compose -f docker-compose.mysql.yml up -p 3307:3306 --name 
 mysql-docker-test -d
-ocker-compose -f docker-compose-mysql.yml up -d
+docker-compose -f docker-compose-mysql.yml up -d
+
+- verificar contenedores activos:
+docker ps
 
 - para bajara imagen:
 docker-compose -f docker-compose.prod.yml down

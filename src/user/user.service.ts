@@ -7,6 +7,8 @@ import { UserEntity } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ReturnUserDto } from './dto/return-user.dto';
 import { UserType } from './enum/user-type.enum';
+import { PersonEntity } from './entities/person.entity';
+import {v4} from 'uuid';
 
 @Injectable()
 export class UserService {
@@ -19,28 +21,53 @@ export class UserService {
         private readonly userRepository: Repository<UserEntity>,
     ) { }
 
-    async create(createUserDto: CreateUserDto): Promise<CreateUserDto> {
-
-        const userEmailExist = await this.getUserByEmail(createUserDto.email)
+    async create(createUserDto: CreateUserDto): Promise<ReturnUserDto> {
+        try {
+            const userEmailExist = await this.getUserByEmail(createUserDto.email)
             .catch(() => undefined);
 
+        // INFO: validando existencia del usuario por Email
         if (userEmailExist) {
             throw new BadGatewayException('Email registered in system');
         }
 
+        // INFO: validando existencia del usuario por nombre de usuario
+        const userNameExist = await this.getUserByUsername(createUserDto.username)
+            .catch(() => undefined);
+
+        if (userNameExist) {
+            throw new BadGatewayException('Username registered in system');
+        } 
+
         const salt = 10;
         const passwordHash = await hash(createUserDto.password, salt);
 
-        return this.userRepository.save({
-            ...createUserDto,
-            typeUser: UserType.User,
-            password: passwordHash
+
+        // Crea nuevo perfil
+        let newProfile = new PersonEntity();
+        newProfile = {...createUserDto.profile};        
+
+        const newUser =  this.userRepository.create({
+            username: createUserDto.username,
+            password: passwordHash,
+            email: createUserDto.email,
+            activationCode: v4(),
+            typeUser: UserType.User
         });
 
+        newUser.profile = newProfile;
+
+        await this.userRepository.save(newUser);
+
+        return new ReturnUserDto(newUser);
         // createUserDto.password = passwordHash;
         // this.users.push(createUserDto);
         // console.log('cantidad >>> ', this.users.length);
-        // return createUserDto;
+        // return createUserDto;            
+        } catch (error) {
+            console.log(">> error >>> ", error)
+            throw new Error(error)
+        }
     }
 
     async findAll(): Promise<UserEntity[]> {
@@ -81,19 +108,33 @@ export class UserService {
         return user;
     }
 
+    async getUserByUsername(username: string): Promise<UserEntity> {
+        const user = await this.userRepository.findOne({
+            where: {
+                username
+            }
+        });
+
+        if (!user) {
+            throw new NotFoundException(`Email ${username} Not Found`);
+        }
+
+        return user;
+    }    
+
     async getUserByIdUsingRelationship(userId: number): Promise<UserEntity> {
         return this.userRepository.findOne({
             where: {
                 id: userId
             },
-            relations: {
-                // addresses: true 
-                addresses: {
-                    city: {
-                        state: true,
-                    }
-                }
-             }
+            // relations: {
+            //     // addresses: true 
+            //     addresses: {
+            //         city: {
+            //             state: true,
+            //         }
+            //     }
+            //  }
             // relations: ['addresses']
         });
     }

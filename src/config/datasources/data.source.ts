@@ -17,7 +17,7 @@ export const DataSourceConfig: DataSourceOptions = {
     username:           configService.get('DB_USER_MYSQL'),
     password:           configService.get('DB_PASSWORD_MYSQL'),
     database:           configService.get('DB_NAME_MYSQL'),
-    entities:           [EnviromentConfig.ENTITIES_DIRNAME_DIST], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
+    entities:           [__dirname + EnviromentConfig.ENTITIES_DIRNAME_DEBUG_MODE], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
     migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
     migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_DIST], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales
     migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_FALSE,

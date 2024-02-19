@@ -1,38 +1,34 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    PrimaryGeneratedColumn, 
+    UpdateDateColumn,
+    OneToOne,
+    JoinColumn,
+} from "typeorm";
 import { IUser } from "../interfaces/user/user.interface";
-import { AddressEntity } from "../../address/entities/address.entity";
+import { PersonEntity } from "./person.entity";
 
 @Entity({ name: 'user' })
 export class UserEntity implements IUser {
+
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({
-        name: 'name',
+        name: 'username',
         unique: false,
         nullable: false
     })
-    name: string;
+    username: string;
 
     @Column({
         name: 'email',
         unique: false,
         nullable: false
     })
-    email: string;
-
-    @Column({        
-        name: 'cpf',
-        default: 'CPF',
-        nullable: true
-    })
-    cpf: string;    
-
-    @Column({
-        name: 'phone',
-        unique: false,
-    })
-    phone: string;
+    email: string;  
 
     @Column({
         name: 'password',
@@ -52,6 +48,27 @@ export class UserEntity implements IUser {
     })
     status: boolean;
 
+    @Column({ 
+        type: 'uuid', 
+        unique: true, 
+        name: 'reset_password_token', 
+        nullable: true
+    })
+    resetPasswordToken: string;
+
+    @Column({
+        default: false,
+        name: 'activation_account'
+    })
+    activationAccount: boolean;  
+
+    @Column({
+        type: "uuid",
+        unique: true,
+        name: 'activation_code'
+    })
+    activationCode: string;
+
     @CreateDateColumn({
         type: 'timestamp',
         // default: () => 'NOW()',
@@ -68,7 +85,17 @@ export class UserEntity implements IUser {
     })
     updatedAt: Date;
 
-    // NOTE: un usuario tiene una o varias direcciones
-    @OneToMany(() => AddressEntity, addresses => addresses.user)
-    addresses?: AddressEntity[];
+  /*
+  * Relacion 1:1 con persona
+    -------------------------
+    INFO: 
+    onDelete: 'NO ACTION', onUpdate: 'NO ACTION',
+    cascade: ['insert', 'update', 'remove'],
+    eager: true    
+  */
+    @OneToOne(() => PersonEntity, (person) => person.user, {
+        cascade: ['update', 'insert']
+      })
+    @JoinColumn({ name: 'person_id'})
+    profile?: PersonEntity;
 }

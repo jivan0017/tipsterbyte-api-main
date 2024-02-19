@@ -1,23 +1,34 @@
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 import { IUser } from '../interfaces/user/user.interface';
+import { PersonEntity } from '../entities/person.entity';
 
-export class CreateUserDto implements IUser {  
-//   id: number;
+export class CreateUserDto implements IUser {
 
-  @IsString()
-  name: string;
+    @IsString()
+    username: string;
 
-  @IsString()
-  email: string;
+    @IsString()
+    email: string;
 
-  @IsString()
-  phone: string;
+    @IsString()
+    password: string;
 
-  @IsString()
-  password: string;
+    @IsOptional()
+    typeUser: number;
 
-  @IsString()
-  cpf: string;
+    @IsOptional()
+    status: boolean;
 
-  typeUser: number;
+    @IsOptional()
+    resetPasswordToken: string;
+
+    @IsOptional()
+    activationAccount: boolean;
+
+    @IsOptional()
+    activationCode: string;  
+
+    @IsOptional()
+    profile: PersonEntity;  
+
 }

@@ -15,10 +15,8 @@ describe('AuthController', () => {
 
     const returnLoginDto: ReturnLoginDto = {
         user: {
-            name: "string",
+            username: "string",
             email: "jaime@test.com",
-            phone: "string",
-            cpf: "string",
             typeUser: 1,
         },
         accessToken: "token"

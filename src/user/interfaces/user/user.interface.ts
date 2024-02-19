@@ -1,7 +1,13 @@
+import { PersonEntity } from "../../../user/entities/person.entity";
+
 export interface IUser {
-    name: string;
+    username: string;
     email: string;
-    phone: string;
     password: string;
     typeUser: number;
+    status: boolean;
+    resetPasswordToken: string;
+    activationAccount: boolean;
+    activationCode: string;
+    profile?: PersonEntity;
 }

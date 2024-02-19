@@ -10,6 +10,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ReturnUserDto } from './dto/return-user.dto';
+import { UserEntity } from './entities/user.entity';
 
 @Controller('user')
 export class UserController {
@@ -20,7 +21,7 @@ export class UserController {
 
     @UsePipes(ValidationPipe)
     @Post()
-    async create(@Body() createUserDto: CreateUserDto): Promise<CreateUserDto> {
+    async create(@Body() createUserDto: CreateUserDto): Promise<ReturnUserDto> {
         return this.userService.create(createUserDto);
     }
 

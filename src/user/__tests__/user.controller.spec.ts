@@ -9,12 +9,14 @@ describe('UserController', () => {
     let userService: UserService;
 
     const returnUserDtoMock: ReturnUserDto = {
-        name: "user test ",
+        username: "user test ",
         email: "test@test.com",
-        phone: "3205545454",
-        cpf: "cpf test",
         typeUser: 1,
-        addresses: undefined,
+        password: '',
+        status: false,
+        resetPasswordToken: '',
+        activationAccount: false,
+        activationCode: ''
     }    
 
     const UserServiceMock = {

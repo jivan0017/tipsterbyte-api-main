@@ -22,9 +22,8 @@ export class UserService {
     ) { }
 
     async create(createUserDto: CreateUserDto): Promise<ReturnUserDto> {
-        try {
-            const userEmailExist = await this.getUserByEmail(createUserDto.email)
-            .catch(() => undefined);
+        const userEmailExist = await this.getUserByEmail(createUserDto.email)
+        .catch(() => undefined);
 
         // INFO: validando existencia del usuario por Email
         if (userEmailExist) {
@@ -41,7 +40,6 @@ export class UserService {
 
         const salt = 10;
         const passwordHash = await hash(createUserDto.password, salt);
-
 
         // Crea nuevo perfil
         let newProfile = new PersonEntity();
@@ -64,10 +62,6 @@ export class UserService {
         // this.users.push(createUserDto);
         // console.log('cantidad >>> ', this.users.length);
         // return createUserDto;            
-        } catch (error) {
-            console.log(">> error >>> ", error)
-            throw new Error(error)
-        }
     }
 
     async findAll(): Promise<UserEntity[]> {

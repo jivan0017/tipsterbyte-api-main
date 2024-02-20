@@ -19,7 +19,7 @@ const configService = new ConfigService();
 
 export const DataSourceConfig: DataSourceOptions = {
     type:               EnviromentConfig.DATABASE_MOTOR_MYSQL,
-    host:               configService.get('DB_HOST_MYSQL'),
+    host:               EnviromentConfig.getDB_HOST_MYSQL(),
     port:      parseInt(configService.get('DB_PORT_MYSQL')),
     username:           configService.get('DB_USER_MYSQL'),
     password:           configService.get('DB_PASSWORD_MYSQL'),

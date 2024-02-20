@@ -9,14 +9,15 @@ describe('UserController', () => {
     let userService: UserService;
 
     const returnUserDtoMock: ReturnUserDto = {
-        username: "user test ",
+        username: "test",
         email: "test@test.com",
         typeUser: 1,
-        password: '',
+        password: null,
         status: false,
         resetPasswordToken: '',
         activationAccount: false,
-        activationCode: ''
+        activationCode: '',
+        profile: undefined,
     }    
 
     const UserServiceMock = {
@@ -49,7 +50,6 @@ describe('UserController', () => {
     describe('findAll and create User', () => {
         it('should be findAll users', async () => {
             const result = await controller.findAll()
-
             expect(userService.findAll).toHaveBeenCalled();
             expect(result).toEqual([returnUserDtoMock])
         });

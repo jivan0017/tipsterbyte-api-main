@@ -4,9 +4,9 @@ export const returnUserDtoMock: ReturnUserDto = {
     username: "test",
     email: "test@test.com",
     typeUser: 1,
-    password: "",
+    password: '',
     status: false,
-    resetPasswordToken: "",
+    resetPasswordToken: '',
     activationAccount: false,
-    activationCode: ""
+    activationCode: ''
 }

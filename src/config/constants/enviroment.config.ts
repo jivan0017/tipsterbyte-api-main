@@ -2,11 +2,13 @@
 export class EnviromentConfig {
 
   // GENERAL
+  static readonly APP_RUN_MODE_DEVELOP = `APP_RUN_MODE_DEVELOP`;
+  static readonly APP_RUN_MODE_DEBUGGER = `APP_RUN_MODE_DEBUGGER`;
   static readonly PROJECT_ENVIROMENT= process.env.PROJECT_ENVIROMENT;
   static readonly HASH_SALT= +process.env.HASH_SALT;
+  static readonly ROOT_NAVIGATION_MULTIMOMDULE_INIT_PATH = `/../../**`;
   
-  
-  static readonly ENTITIES_DIRNAME_DEBUG_MODE = `/../../**/*.entity{.ts,.js}`;
+  static readonly ENTITIES_DIRNAME_DEBUG_MODE = `${this.ROOT_NAVIGATION_MULTIMOMDULE_INIT_PATH}/*.entity{.ts,.js}`;
   static readonly ENTITIES_DIRNAME_THREE_LEVELS = `/../../../**/*.entity{.ts,.js}`;
   // TODO: agregar: dist/**/*.entity{.js,.ts}
   static readonly ENTITIES_DIRNAME_DIST_ESTTABLE = `dist/**/*.entity{.ts,.js}`;
@@ -25,5 +27,17 @@ export class EnviromentConfig {
   static readonly SINCRONIZED_DATABASE_FALSE = false;
   static readonly SINCRONIZED_DATABASE_TRUE = true;
   static readonly MIGRATIONS_RUN_FALSE = false;
-  static readonly MIGRATIONS_RUN_TRUE = true;  
+  static readonly MIGRATIONS_RUN_TRUE = true;
+
+  static  getEntitiesFullPath(appRunMode: string) {
+    let pathEntityString = '';
+
+    if (this.APP_RUN_MODE_DEBUGGER == appRunMode) {
+        pathEntityString = this.ENTITIES_DIRNAME_DEBUG_MODE;
+    } else if (this.APP_RUN_MODE_DEVELOP == appRunMode) {
+        pathEntityString = this.ENTITIES_DIRNAME_DIST_ESTTABLE;
+    }
+
+    return pathEntityString;
+  }
 }

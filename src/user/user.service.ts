@@ -116,21 +116,24 @@ export class UserService {
         return user;
     }    
 
+    /**
+     * 
+     */
     async getUserByIdUsingRelationship(userId: number): Promise<UserEntity> {
-        return this.userRepository.findOne({
+        const user =  await this.userRepository.findOne({
+            relations: {
+                profile: true, 
+            },
             where: {
                 id: userId
             },
-            // relations: {
-            //     // addresses: true 
-            //     addresses: {
-            //         city: {
-            //             state: true,
-            //         }
-            //     }
-            //  }
-            // relations: ['addresses']
         });
+
+        if (!user) {
+            throw new NotFoundException(`User Not Found`);
+        }
+
+        return user;        
     }
 
     // findOne(id: number) {

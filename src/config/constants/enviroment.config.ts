@@ -1,4 +1,6 @@
 import { ConfigService } from "@nestjs/config";
+import { IDatabaseProps } from "../interfaces/databaseProps.interface";
+
 
 export class EnviromentConfig {
 
@@ -35,6 +37,34 @@ export class EnviromentConfig {
 
     static getDB_HOST_MYSQL() {
         return this.configService.get('DB_HOST_MYSQL');
+    }
+
+    static getDatabaseProperties(motorDatabase: string) {
+        const dbProperties: IDatabaseProps = {
+            dbHost: '',
+            dbPort: '',
+            dbUser: '',
+            dbPassword: '',
+            dbName: '',
+        };
+
+        if (this.DATABASE_MOTOR_MYSQL == motorDatabase) {
+            dbProperties.dbHost = this.configService.get('DB_HOST_MYSQL');
+            dbProperties.dbPort = this.configService.get('DB_PORT_MYSQL');
+            dbProperties.dbUser = this.configService.get('DB_USER_MYSQL');
+            dbProperties.dbPassword = this.configService.get('DB_PASSWORD_MYSQL');
+            dbProperties.dbName = this.configService.get('DB_NAME_MYSQL');
+        }
+
+        if (this.DATABASE_MOTOR_POSTGRES == motorDatabase) {
+            dbProperties.dbHost = this.configService.get('DB_HOST_POSTGRESQL');
+            dbProperties.dbPort = this.configService.get('DB_PORT_POSTGRESQL');
+            dbProperties.dbUser = this.configService.get('DB_USER_POSTGRESQL');
+            dbProperties.dbPassword = this.configService.get('DB_PASSWORD_POSTGRESQL');
+            dbProperties.dbName = this.configService.get('DB_NAME_POSTGRESQL');            
+        }
+
+        return dbProperties;
     }
 
     static  getEntitiesFullPath(appRunMode: string) {

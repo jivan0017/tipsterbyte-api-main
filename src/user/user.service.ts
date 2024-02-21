@@ -121,9 +121,9 @@ export class UserService {
      */
     async getUserByIdUsingRelationship(userId: number): Promise<UserEntity> {
         const user =  await this.userRepository.findOne({
-            relations: {
-                profile: true, 
-            },
+            relations: [
+                'profile', 'profile.city'
+            ],
             where: {
                 id: userId
             },

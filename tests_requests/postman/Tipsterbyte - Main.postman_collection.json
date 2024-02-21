@@ -52,14 +52,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}:{{port}}/user/2",
+									"raw": "{{base_url}}:{{port}}/user/3",
 									"host": [
 										"{{base_url}}"
 									],
 									"port": "{{port}}",
 									"path": [
 										"user",
-										"2"
+										"3"
 									]
 								}
 							},
@@ -133,7 +133,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"email2c@mail.com\",\r\n    \"password\": \"secret1234\"\r\n}",
+									"raw": "{\r\n    \"email\": \"jdiaz@jdiaz.com\",\r\n    \"password\": \"secret123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

@@ -1,5 +1,15 @@
+import { PersonEntity } from "../../user/entities/person.entity";
 import { StateEntity } from "../../state/entities/state.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    JoinColumn, 
+    ManyToOne, 
+    PrimaryGeneratedColumn, 
+    UpdateDateColumn,
+    OneToOne,
+} from "typeorm";
 
 @Entity({ name: 'city' })
 export class CityEntity {
@@ -35,4 +45,10 @@ export class CityEntity {
         referencedColumnName: 'id'
     })    
     state?: StateEntity;
+
+    // INFO: Una ciudad está asociada con una persona que es quien tiene la referencia de ciudad (city_id)
+    @OneToOne(() => PersonEntity, (person) => person.city, {
+        onUpdate: 'CASCADE'
+    })
+    person?: PersonEntity;
 }

@@ -1,11 +1,11 @@
 import { PersonEntity } from "../../user/entities/person.entity";
-import { StateEntity } from "../../state/entities/state.entity";
+import { StateEntity } from "../../location/entities/state.entity";
 import { 
     Column, 
     CreateDateColumn, 
     Entity, 
     JoinColumn, 
-    ManyToOne, 
+    ManyToOne,
     PrimaryGeneratedColumn, 
     UpdateDateColumn,
     OneToOne,

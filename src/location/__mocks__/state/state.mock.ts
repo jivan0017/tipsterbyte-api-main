@@ -1,4 +1,4 @@
-import { StateEntity } from "../entities/state.entity";
+import { StateEntity } from "../../entities/state.entity";
 
 export const stateMock: StateEntity = {
     createdAt: new Date(),

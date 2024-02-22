@@ -1,4 +1,4 @@
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigModule } from "@nestjs/config";
 import { EnviromentConfig } from "../constants/enviroment.config";
 import { DataSource, DataSourceOptions } from "typeorm";
 
@@ -6,9 +6,6 @@ ConfigModule.forRoot({
     envFilePath: `.${process.env.PROJECT_ENVIROMENT}.env`,
     isGlobal: true
 });
-
-// INFO: preparando el mecanismo con cargue dinámico de variables de entorno
-const configService = new ConfigService();
 
 /*  INFO:  
     - el modo: EnviromentConfig.APP_RUN_MODE_DEBUGGER, únicamente sirve para hacer Debugging,
@@ -19,11 +16,11 @@ const configService = new ConfigService();
 
 export const DataSourceConfig: DataSourceOptions = {
     type:               EnviromentConfig.DATABASE_MOTOR_MYSQL,
-    host:               EnviromentConfig.getDB_HOST_MYSQL(),
-    port:      parseInt(configService.get('DB_PORT_MYSQL')),
-    username:           configService.get('DB_USER_MYSQL'),
-    password:           configService.get('DB_PASSWORD_MYSQL'),
-    database:           configService.get('DB_NAME_MYSQL'),
+    host:               EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbHost,
+    port:      parseInt(EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbPort),
+    username:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbUser,
+    password:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbPassword,
+    database:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbName,
     entities:           [__dirname + EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEBUGGER)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
     migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
     migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_DIST], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales

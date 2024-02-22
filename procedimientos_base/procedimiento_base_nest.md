@@ -54,6 +54,8 @@
     nest generate resource city --no-spec
     nest generate resource address --no-spec
 
+    nest generate resource location/country
+
 
 # Instalar cache manager:
     - comando:

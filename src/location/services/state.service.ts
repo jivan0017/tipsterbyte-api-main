@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStateDto } from './dto/create-state.dto';
-import { UpdateStateDto } from './dto/update-state.dto';
+import { CreateStateDto } from '../dto/state/create-state.dto';
+import { UpdateStateDto } from '../dto/state/update-state.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { StateEntity } from './entities/state.entity';
+import { StateEntity } from '../entities/state.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

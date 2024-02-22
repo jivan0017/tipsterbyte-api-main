@@ -6,9 +6,9 @@ import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { CityModule } from './city/city.module';
-import { StateModule } from './state/state.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guards';
+import { LocationModule } from './location/location.module';
 
 @Module({
   imports: [
@@ -21,10 +21,10 @@ import { RolesGuard } from './guards/roles.guards';
     ),
     
     UserModule,
-    StateModule,
     CityModule,
     AuthModule,
-    JwtModule,    
+    JwtModule,
+    LocationModule,    
   ],
   controllers: [],
   providers: [{

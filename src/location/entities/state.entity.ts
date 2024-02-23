@@ -1,5 +1,5 @@
 import { CountryEntity } from "./country.entity";
-import { CityEntity } from "../../city/entities/city.entity";
+import { CityEntity } from "./city.entity";
 import { Column, 
     CreateDateColumn, 
     Entity, 

@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
-import { CityService } from './city.service';
-import { CreateCityDto } from './dto/create-city.dto';
-import { UpdateCityDto } from './dto/update-city.dto';
-import { CityEntity } from './entities/city.entity';
+import { CityService } from '../services/city.service';
+import { CreateCityDto } from '../dto/city/create-city.dto';
+import { UpdateCityDto } from '../dto/city/update-city.dto';
+import { CityEntity } from '../entities/city.entity';
 
 @Controller('city')
 export class CityController {

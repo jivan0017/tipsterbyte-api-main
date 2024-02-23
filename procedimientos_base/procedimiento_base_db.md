@@ -33,6 +33,8 @@ docker-compose up
 docker-compose -f docker-compose.prod.yml up -d
 docker-compose -f docker-compose.mysql.yml up -p 3307:3306 --name 
 mysql-docker-test -d
+
+- correr mysql docker
 docker-compose -f docker-compose-mysql.yml up -d
 
 - verificar contenedores activos:
@@ -59,6 +61,8 @@ npx typeorm migration:create ./src/migration/create_table_user
 npx typeorm migration:create ./src/migration/create_table_state
 npx typeorm migration:create ./src/migration/create_table_city
 npx typeorm migration:create ./src/migration/create_table_address
+
+npm run m:gen -- ./src/migration/init
 
 ## CREAR TABLAS - REFFERENCIAS DE EJEMPLO
 npx typeorm migration:create ./src/migration/create_table_category
@@ -87,3 +91,6 @@ create database tipsterbyte_main;
  -
  docker images
  docker ps
+
+
+

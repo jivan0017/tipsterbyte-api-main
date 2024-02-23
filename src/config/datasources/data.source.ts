@@ -21,11 +21,11 @@ export const DataSourceConfig: DataSourceOptions = {
     username:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbUser,
     password:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbPassword,
     database:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbName,
-    entities:           [__dirname + EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEBUGGER)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
+    entities:           [EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEVELOP)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
     migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
-    migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_DIST], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales
-    migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_FALSE,
-    synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_TRUE,
+    migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales    
+    synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_TRUE, 
+    migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_TRUE,
 } 
 
 export const AppDS = new DataSource(DataSourceConfig)

@@ -90,4 +90,22 @@
     nest g controller product
 
 # CORRER MIGRACIONES:
+    -     La configuración de las migraciones es la siguiente según el caso:
+
+# CONFIGURACIONES MIGRACIONES
+- PARA REALIZAR MIGRACIONES AUTOMATICAS:
+ 
+    entities:           [EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEVELOP)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
+    migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
+    migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales    
+    synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_FALSE,
+    migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_TRUE,
     
+
+- PARA REALIZAR MIGRACIONES A PARTIR DE ENTIDAADES:
+    entities:           [__dirname + EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEBUGGER)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
+    migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
+    migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_DIST], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales
+    migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_FALSE,
+    synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_TRUE,
+       

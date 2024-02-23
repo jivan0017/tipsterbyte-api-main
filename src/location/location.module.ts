@@ -7,22 +7,28 @@ import { ContinentEntity } from './entities/continent.entity';
 import { StateEntity } from './entities/state.entity';
 import { StateController } from './controllers/state.controller';
 import { StateService } from './services/state.service';
+import { CityController } from './controllers/city.controller';
+import { CityService } from './services/city.service';
+import { CityEntity } from './entities/city.entity';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([
             ContinentEntity,
             CountryEntity,
-            StateEntity
+            StateEntity,
+            CityEntity
         ])
     ],
     controllers: [
         LocationController,
-        StateController
+        StateController,
+        CityController
     ],
     providers: [
         LocationService,
-        StateService
+        StateService,
+        CityService
     ],
     exports: [
         LocationService

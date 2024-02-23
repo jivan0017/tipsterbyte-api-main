@@ -12,15 +12,17 @@ export class EnviromentConfig {
     static readonly ROOT_NAVIGATION_MULTIMOMDULE_INIT_PATH = `/../../**`;
     
     static readonly ENTITIES_DIRNAME_DEBUG_MODE = `${this.ROOT_NAVIGATION_MULTIMOMDULE_INIT_PATH}/*.entity{.ts,.js}`;
+    static readonly APP_RUN_MODE_MIGRATIONS = `/../../**/*.entity{.ts,.js}`;
     static readonly ENTITIES_DIRNAME_THREE_LEVELS = `/../../../**/*.entity{.ts,.js}`;
     // TODO: agregar: dist/**/*.entity{.js,.ts}
     static readonly ENTITIES_DIRNAME_DIST_ESTTABLE = `dist/**/*.entity{.ts,.js}`;
 
-    static readonly MIGRATIONS_DIRNAME = `/migration/*{.ts,*.js}`;
-    static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH = `/migration/{.ts,*.js}`;
-    static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH_V2 = `/src/migration/{.ts,*.js}`;
+    static readonly MIGRATIONS_DIRNAME = `/migrations/*{.ts,*.js}`;
+    static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH = `/migrations/{.ts,*.js}`;
+    static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH_V2 = `/src/migrations/{.ts,*.js}`;
+    static readonly MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC = `src/migrations/**/*{.ts,.js}`;
     // TODO: dist/migration/**/*{.ts,.js}
-    static readonly MIGRATIONS_DIRNAME_DIST = `dist/migration/**/*{.ts,.js}`; // TODO: evaluar `dist/db/migration/*{.ts,.js}`;
+    static readonly MIGRATIONS_DIRNAME_DIST = `dist/src/migrations/**/*{.ts,.js}`; // TODO: evaluar `dist/db/migration/*{.ts,.js}`;
 
     static readonly MIGRATIONS_TABLE_NAME = 'migrations'; 
 
@@ -74,6 +76,8 @@ export class EnviromentConfig {
             pathEntityString = this.ENTITIES_DIRNAME_DEBUG_MODE;
         } else if (this.APP_RUN_MODE_DEVELOP == appRunMode) {
             pathEntityString = this.ENTITIES_DIRNAME_DIST_ESTTABLE;
+        } else if (this.APP_RUN_MODE_MIGRATIONS == appRunMode) {
+
         }
 
         return pathEntityString;

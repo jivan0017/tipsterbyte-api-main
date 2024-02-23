@@ -6,7 +6,7 @@ import {
     JoinColumn,
 } from "typeorm";
 import { UserEntity } from "./user.entity";
-import { CityEntity } from "../../city/entities/city.entity";
+import { CityEntity } from "../../location/entities/city.entity";
 
 
 @Entity('persons')

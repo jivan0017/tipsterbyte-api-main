@@ -5,7 +5,6 @@ import { DataSourceConfig } from './config/datasources/data.source';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
-import { CityModule } from './city/city.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guards';
 import { LocationModule } from './location/location.module';
@@ -21,7 +20,6 @@ import { LocationModule } from './location/location.module';
     ),
     
     UserModule,
-    CityModule,
     AuthModule,
     JwtModule,
     LocationModule,    

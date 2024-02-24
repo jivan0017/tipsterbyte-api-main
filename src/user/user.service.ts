@@ -57,6 +57,7 @@ export class UserService {
 
         await this.userRepository.save(newUser);
 
+        // TODO: estandarizar respuesta HTTP 
         return new ReturnUserDto(newUser);
         // createUserDto.password = passwordHash;
         // this.users.push(createUserDto);
@@ -68,7 +69,9 @@ export class UserService {
 
         try {
             // return this.users;
-            return this.userRepository.find({});
+            return this.userRepository.find({
+                //... TODO: posibles argumentos
+            });
         } catch (error) {
             console.log(">>> error: ", error)
         }

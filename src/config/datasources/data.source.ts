@@ -13,19 +13,44 @@ ConfigModule.forRoot({
     de entidades a partir de migraciones o definición de miembros en las clases de entidad para 
     mapear a tablas de la base de datos.
 */
+EnviromentConfig.setEnviromentMode(
+    EnviromentConfig.APP_RUN_MODE_DEBUGGER
+);
 
-export const DataSourceConfig: DataSourceOptions = {
-    type:               EnviromentConfig.DATABASE_MOTOR_MYSQL,
-    host:               EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbHost,
-    port:      parseInt(EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbPort),
-    username:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbUser,
-    password:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbPassword,
-    database:           EnviromentConfig.getDatabaseProperties(EnviromentConfig.DATABASE_MOTOR_MYSQL).dbName,
-    entities:           [__dirname + EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEBUGGER)], //[`dist/**/*.entity{.js,.ts}`], // TODO: verificar cambio [`dist/**/*.entity{.js,.ts}`],
+EnviromentConfig.setDatabaseMotorMode(
+    EnviromentConfig.DATABASE_MOTOR_MYSQL
+)
+
+export const LOCATION_INIT_PATH = getInitPath();
+
+/* NOTE: configurar según el modo 
+    - modo debugger: __dirname + EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEBUGGER)
+    - modo develop: EnviromentConfig.getEntitiesFullPath(EnviromentConfig.APP_RUN_MODE_DEVELOP)
+    - modo migration: 
+*/
+export const DataSourceConfig: DataSourceOptions = {    
+    type:                EnviromentConfig.DATABASE_MOTOR_MYSQL,
+    host:                EnviromentConfig.getDatabaseProperties().dbHost,
+    port:       parseInt(EnviromentConfig.getDatabaseProperties().dbPort),
+    username:            EnviromentConfig.getDatabaseProperties().dbUser,
+    password:            EnviromentConfig.getDatabaseProperties().dbPassword,
+    database:            EnviromentConfig.getDatabaseProperties().dbName,
+    entities:            [LOCATION_INIT_PATH + EnviromentConfig.getModeEnviromentProperties().entityPath],    
     migrationsTableName: EnviromentConfig.MIGRATIONS_TABLE_NAME,  
-    migrations:         [EnviromentConfig.MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC], //[`dist/migration/**/*{.ts,.js}`], //<-- ok para migraciones manuales    
-    synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_FALSE, 
-    migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_FALSE,
+    migrations:          [EnviromentConfig.getModeEnviromentProperties().migrationPath],
+    synchronize:         EnviromentConfig.getModeEnviromentProperties().synchronizeDatabaseStatus,
+    migrationsRun:       EnviromentConfig.getModeEnviromentProperties().migrationRunStatus,
+}
+
+function getInitPath () {
+
+    let initPath = '';
+
+    if (EnviromentConfig.APP_RUN_MODE_DEBUGGER == EnviromentConfig.getEnviromentMode()) {
+        initPath = __dirname;
+    }
+
+    return initPath;
 }
 
 export const AppDS = new DataSource(DataSourceConfig)

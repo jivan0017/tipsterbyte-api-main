@@ -34,7 +34,7 @@ docker-compose -f docker-compose.prod.yml up -d
 docker-compose -f docker-compose.mysql.yml up -p 3307:3306 --name 
 mysql-docker-test -d
 
-- correr mysql docker
+- correr mysql docker (DOCKER COMPOSE)
 docker-compose -f docker-compose-mysql.yml up -d
 
 - verificar contenedores activos:
@@ -62,7 +62,11 @@ npx typeorm migration:create ./src/migration/create_table_state
 npx typeorm migration:create ./src/migration/create_table_city
 npx typeorm migration:create ./src/migration/create_table_address
 
-npm run m:gen -- ./src/migration/init
+- Generar migraaciones
+npm run m:gen -- ./src/migrations/init
+
+npm run m:gen -n ./src/migrations/init
+npm run m:run
 
 ## CREAR TABLAS - REFFERENCIAS DE EJEMPLO
 npx typeorm migration:create ./src/migration/create_table_category

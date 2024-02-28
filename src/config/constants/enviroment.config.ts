@@ -9,9 +9,12 @@ import {
 export class EnviromentConfig {
 
     // GENERAL
-    static readonly APP_RUN_MODE_DEVELOP    = `APP_RUN_MODE_DEVELOP`;
+    static readonly APP_RUN_MODE_DEVELOP_NOT_SYNC    = `APP_RUN_MODE_DEVELOP`;
+    static readonly APP_RUN_MODE_DEVELOP_AND_SYNC = `APP_RUN_MODE_DEVELOP_AND_SYNC`;
     static readonly APP_RUN_MODE_DEBUGGER   = `APP_RUN_MODE_DEBUGGER`;
+
     static readonly APP_RUN_MODE_MIGRATIONS = `/../../**/*.entity{.ts,.js}`;
+    
     static APP_RUN_MODE_ASSIGNED            = ''
     static DATABASE_MOTOR_MODE_ASSIGNED     = ''
 
@@ -43,8 +46,9 @@ export class EnviromentConfig {
     // INFO: preparando el mecanismo con cargue dinámico de variables de entorno
     static readonly configService = new ConfigService();
 
-    static readonly ENVIROMENT_DEVELOPMENT_AND_MIGRATIONS_MANUAL_MODE: string = 'DEVELOPER_AND_MIGRATIONS_MANUAL_MODDE';
-    static readonly ENVIROMENT_DEBUGIN_AND_MIGRATIONS_AUTO_MODE: string       = 'DEVELOPER_AND_MIGRATIONS_MANUAL_MODDE';
+    // TODO: EVALUAR
+    static readonly ENVIROMENT_DEVELOPMENT_AND_MIGRATIONS_MANUAL_MODE: string = 'DEVELOPER_AND_MIGRATIONS_MANUAL_MODE';
+    static readonly ENVIROMENT_DEBUGIN_AND_MIGRATIONS_AUTO_MODE: string       = 'DEVELOPER_AND_MIGRATIONS_MANUAL_MODE';
 
 
     static getModeEnviromentProperties(): IConfigEnviromentProps {
@@ -56,24 +60,31 @@ export class EnviromentConfig {
             synchronizeDatabaseStatus: false,
         }
 
-        if (this.ENVIROMENT_DEBUGIN_AND_MIGRATIONS_AUTO_MODE == this.getEnviromentMode()) {
-            envConfigProperties.entityPath                = this.APP_RUN_MODE_DEBUGGER;
+        if (this.APP_RUN_MODE_DEBUGGER == this.getEnviromentMode()) {
+            envConfigProperties.entityPath                = this.ENTITIES_DIRNAME_DEBUG_MODE; //this.APP_RUN_MODE_DEBUGGER;
             envConfigProperties.migrationPath             = this.MIGRATIONS_DIRNAME_DIST;
             envConfigProperties.migrationRunStatus        = this.MIGRATIONS_RUN_FALSE;
             envConfigProperties.synchronizeDatabaseStatus = this.SINCRONIZED_DATABASE_TRUE;
         }
 
-        if (this.ENVIROMENT_DEVELOPMENT_AND_MIGRATIONS_MANUAL_MODE == this.getEnviromentMode()) {
-            envConfigProperties.entityPath                = this.APP_RUN_MODE_DEVELOP;
+        if (this.APP_RUN_MODE_DEVELOP_NOT_SYNC == this.getEnviromentMode()) {
+            envConfigProperties.entityPath                = this.ENTITIES_DIRNAME_DIST_ESTTABLE; //this.APP_RUN_MODE_DEVELOP;
             envConfigProperties.migrationPath             = this.MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC;
             envConfigProperties.migrationRunStatus        = this.MIGRATIONS_RUN_TRUE;
             envConfigProperties.synchronizeDatabaseStatus = this.SINCRONIZED_DATABASE_FALSE;
-        }        
+        }
+
+        if (this.APP_RUN_MODE_DEVELOP_AND_SYNC == this.getEnviromentMode()) {
+            envConfigProperties.entityPath                = this.ENTITIES_DIRNAME_DIST_ESTTABLE; //this.APP_RUN_MODE_DEVELOP;
+            envConfigProperties.migrationPath             = this.MIGRATIONS_DIRNAME_ABSOLUTE_PATH_SRC;
+            envConfigProperties.migrationRunStatus        = this.MIGRATIONS_RUN_TRUE;
+            envConfigProperties.synchronizeDatabaseStatus = this.SINCRONIZED_DATABASE_TRUE;
+        }                
 
         return envConfigProperties;
     }
 
-    static getDatabaseProperties(): IDatabaseProps {
+    static getDatabaseProperties() {
         const dbProperties: IDatabaseProps = {
             dbHost: '',
             dbPort: '',
@@ -125,7 +136,7 @@ export class EnviromentConfig {
 
             pathEntityString = this.ENTITIES_DIRNAME_DEBUG_MODE;
 
-        } else if (this.APP_RUN_MODE_DEVELOP == appRunMode) {
+        } else if (this.APP_RUN_MODE_DEVELOP_NOT_SYNC == appRunMode) {
             // NOTE: modo de generación manual de migraciones
             pathEntityString = this.ENTITIES_DIRNAME_DIST_ESTTABLE;
 

@@ -7,14 +7,14 @@ ConfigModule.forRoot({
     isGlobal: true
 });
 
-/*  INFO:  
+/*  NOTE:  - REFACTORIZAR MENSAJE
     - el modo: EnviromentConfig.APP_RUN_MODE_DEBUGGER, únicamente sirve para hacer Debugging,
     el modo: EnviromentConfig.ENTITIES_DIRNAME_DIST_ESTTABLE debe ajustarse para la creación
     de entidades a partir de migraciones o definición de miembros en las clases de entidad para 
     mapear a tablas de la base de datos.
 */
 EnviromentConfig.setEnviromentMode(
-    EnviromentConfig.APP_RUN_MODE_DEBUGGER
+    EnviromentConfig.APP_RUN_MODE_DEVELOP_AND_SYNC
 );
 
 EnviromentConfig.setDatabaseMotorMode(
@@ -44,13 +44,8 @@ export const DataSourceConfig: DataSourceOptions = {
 
 function getInitPath () {
 
-    let initPath = '';
-
-    if (EnviromentConfig.APP_RUN_MODE_DEBUGGER == EnviromentConfig.getEnviromentMode()) {
-        initPath = __dirname;
-    }
-
-    return initPath;
+    return EnviromentConfig.APP_RUN_MODE_DEBUGGER == EnviromentConfig.getEnviromentMode() ? 
+        __dirname : '';
 }
 
 export const AppDS = new DataSource(DataSourceConfig)

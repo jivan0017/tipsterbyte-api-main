@@ -9,7 +9,7 @@ import { UserEntity } from "./user.entity";
 import { CityEntity } from "../../location/entities/city.entity";
 
 
-@Entity('persons')
+@Entity('person')
 export class PersonEntity {
 
     @PrimaryGeneratedColumn()

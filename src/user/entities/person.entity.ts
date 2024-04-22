@@ -15,41 +15,59 @@ export class PersonEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable: true})
-    full_name: string; // NOMBRE COMPLETO
+    @Column({
+        name: 'full_name', 
+        nullable: true,
+    })
+    fullName: string; // NOMBRE COMPLETO
 
-    @Column({nullable: true})
-    first_name: string; // PRIMER NOMBRE
+    @Column({
+        name: 'first_name', 
+        nullable: true,
+    })
+    firstName: string; // PRIMER NOMBRE
 
-    @Column({nullable: true})
-    last_name: string; // APELLIDO
+    @Column({
+        name: 'last_name', 
+        nullable: true,
+    })
+    lastName: string; // APELLIDO
 
     // TODO: se agrega el tipo: "CC: Cédula de ciudadanía"
     @Column({
+        name: 'identification_type', 
         nullable: true,
         type: 'enum',
         enum: ['CUIT', 'DNI', 'CC'],
         default: 'CC'
     })
-    identification_type: string; 
+    identificationType: string; 
 
     @Column("varchar", { 
         length: 13 , 
-        nullable: true
+        nullable: true,
+        name: 'identification_number', 
     })
-    identification_number: string;
-
-    @Column({nullable: true})
-    phone_number: string; // TELEFONO
-
-    @Column({nullable: true})
-    cell_number: string; // TELEFONO CELULAR
+    identificationNumber: string;
 
     @Column({
+        name: 'phone_number', 
+        nullable: true
+    })
+    phoneNumber: string; // TELEFONO
+
+    @Column({
+        name: 'cell_number', 
+        nullable: true
+    })
+    cellNumber: string; // TELEFONO CELULAR
+
+    @Column({
+        name: 'createdAt', 
         type: 'datetime', 
         default: () => 'CURRENT_TIMESTAMP'
     })
-    created_at: Date;
+    createdAt: Date;
     
     @OneToOne(() => UserEntity, (user) => user.profile, {
         onUpdate: 'CASCADE'
@@ -58,7 +76,7 @@ export class PersonEntity {
 
     @OneToOne(() => CityEntity, (city) => city.person, {
         cascade: ['update', 'insert']
-    })
+    })    
     @JoinColumn({ name: 'city_id'})
     city?: CityEntity;  
 }

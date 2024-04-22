@@ -14,6 +14,7 @@ ConfigModule.forRoot({
     mapear a tablas de la base de datos.
 */
 EnviromentConfig.setEnviromentMode(
+    // EnviromentConfig.APP_RUN_MODE_DEVELOP_NOT_SYNC,
     EnviromentConfig.APP_RUN_MODE_DEVELOP_AND_SYNC
 );
 

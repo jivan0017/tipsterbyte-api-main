@@ -77,7 +77,9 @@
     nest g service auth
     nest g controller auth
 
-# VENTAS -----------------------------------------
+# LIGAS -----------------------------------------
+- Crear recurso de league-manager
+nest generate resource league-manager
 
 # CATEGORY MODULE
     nest g module category

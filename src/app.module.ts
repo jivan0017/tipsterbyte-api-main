@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guards';
 import { LocationModule } from './location/location.module';
+import { OraculoModule } from './business/oraculo/oraculo.module';
+import { LeagueManagerModule } from './business/league-manager/league-manager.module';
+
 
 @Module({
   imports: [
@@ -22,7 +25,9 @@ import { LocationModule } from './location/location.module';
     UserModule,
     AuthModule,
     JwtModule,
-    LocationModule,    
+    LocationModule,
+    LeagueManagerModule,
+    OraculoModule,
   ],
   controllers: [],
   providers: [{

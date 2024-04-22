@@ -22,7 +22,7 @@ npm run m:run
 
 # VACIAR DB:
 DROP TABLE tipsterbyte_main.user;
-DROP TABLE tipsterbyte_main.persons;
+DROP TABLE tipsterbyte_main.person;
 DROP TABLE tipsterbyte_main.city;
 DROP TABLE tipsterbyte_main.state;
 DROP TABLE tipsterbyte_main.country;

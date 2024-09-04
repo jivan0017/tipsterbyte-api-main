@@ -1,3 +1,7 @@
+# INSTALACIÓN CLI NEST
+    - comando:
+    npm i -g @nestjs/cli
+
 # CREAR PROYECTO NEST
     - comando:
     nest new api-blog -g
@@ -111,3 +115,7 @@ nest generate resource league-manager
     migrationsRun:       EnviromentConfig.MIGRATIONS_RUN_FALSE,
     synchronize:         EnviromentConfig.SINCRONIZED_DATABASE_TRUE,
        
+
+
+NOTE: TENER EN CUENTA ESTE COMANDO:
+npm i --save-dev @types/node       

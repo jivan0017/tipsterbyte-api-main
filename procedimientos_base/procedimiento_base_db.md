@@ -35,10 +35,71 @@ docker-compose -f docker-compose.mysql.yml up -p 3307:3306 --name
 mysql-docker-test -d
 
 - correr mysql docker (DOCKER COMPOSE)
-docker-compose -f docker-compose-mysql.yml up -d
+- entrar a la carpeta contenedora del docker file:
+  cd docker-files/
+
+- Modificar  el docker compose para especificar el usuario del SO para acceder a AppData
+  volumes:
+      - /c/Users/usuario/AppData/Local/Programs/MySQL/MySQL Server 8.0/data:/var/lib/mysql
+
+- correr el comando:
+  docker-compose -f docker-compose-mysql.yml up -d
 
 - verificar contenedores activos:
 docker ps
+
+
+
+INTENTO #1  con comandos directamente en el SQL d DBeaver:
+    CREATE USER 'tipsterbyte_main_admin'@'localhost' IDENTIFIED BY 'secret123$';
+
+    -- Conectar este usuario desde cualquier host
+    CREATE USER 'tipsterbyte_main_admin'@'%' IDENTIFIED BY 'secret123$';
+
+    GRANT ALL PRIVILEGES ON tipsterbyte_main.* TO 'tipsterbyte_main_admin'@'localhost';
+    -- otorgar para todas las bds:
+    GRANT ALL PRIVILEGES ON *.* TO 'tipsterbyte_main_admin'@'localhost';
+
+    -- aplicar los cambios anteriores:
+    FLUSH PRIVILEGES;
+
+    -- verificar creación de usuarios:
+    SELECT User, Host FROM mysql.user WHERE User = 'tipsterbyte_main_admin';
+
+
+
+
+
+- Una vez creada la conexión con la bd a través de un IDE (DBeaver por ej.), la cadena de conexión
+válida para conectar es la URL:
+jdbc:mysql://localhost:3306/tipsterbyte_main?allowPublicKeyRetrieval=true&useSSL=false
+
+- como opción 2, mirar la captura de pantalla que indica como modificar el valor de la propiedad de conexión: "allowPublicKeyRetrieval a true"
+
+
+INTENTO #2:
+    - pasos para configurar el usuario en la terminal de mysql:
+    docker exec -it tipsterbyte_main_mysql_test mysql -u root -p
+    
+    Ingresa la contraseña de root: secret
+    Crea el usuario y otorga permisos:
+
+    CREATE USER 'tipsterbyte_main_admin'@'%' IDENTIFIED BY 'secret';
+    GRANT ALL PRIVILEGES ON tipsterbyte_main.* TO 'tipsterbyte_main_admin'@'%';
+    FLUSH PRIVILEGES;
+
+    Verifica que el usuario tiene los permisos correctos:
+    SHOW GRANTS FOR 'tipsterbyte_main_admin'@'%';
+
+    Reinicia el contenedor de MySQL para asegurarte de que los cambios se apliquen correctamente:
+    docker restart tipsterbyte_main_mysql_test
+
+    - se conecta entonces con la misma clave asignada
+
+
+
+
+
 
 - para bajara imagen:
 docker-compose -f docker-compose.prod.yml down

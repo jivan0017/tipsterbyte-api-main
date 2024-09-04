@@ -10,7 +10,7 @@ services:
       MYSQL_USER: tipsterbyte_main_admin
       MYSQL_ROOT_PASSWORD: secret
     volumes:
-      - C:\Users\user\AppData\mysql\data:/var/lib/mysql
+      - C:\Users\JaimeIvanDiazGaona\AppData\mysql\data:/var/lib/mysql
     ports:
       - 3306:3306
     

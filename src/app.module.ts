@@ -13,28 +13,28 @@ import { LeagueManagerModule } from './business/league-manager/league-manager.mo
 
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-        envFilePath: `.${process.env.PROJECT_ENVIROMENT}.env`,
-        isGlobal: true,
-    }),
-    TypeOrmModule.forRoot(
-        DataSourceConfig
-    ),
-    
-    UserModule,
-    AuthModule,
-    JwtModule,
-    LocationModule,
-    LeagueManagerModule,
-    OraculoModule,
-  ],
-  controllers: [],
-  providers: [{
-    provide: APP_GUARD,
-    useClass: RolesGuard
-  }],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: `.${process.env.PROJECT_ENVIROMENT}.env`,
+            isGlobal: true,
+        }),
+        TypeOrmModule.forRoot(
+            DataSourceConfig
+        ),
+
+        UserModule,
+        AuthModule,
+        JwtModule,
+        LocationModule,
+        LeagueManagerModule,
+        OraculoModule,
+    ],
+    controllers: [],
+    providers: [{
+        provide: APP_GUARD,
+        useClass: RolesGuard
+    }],
 })
 export class AppModule {
-    
+
 }

@@ -1,6 +1,7 @@
-import { IsOptional, IsString } from 'class-validator';
+// import { IsOptional, IsString } from 'class-validator';
 import { IUser } from '../interfaces/user/user.interface';
 import { PersonEntity } from '../entities/person.entity';
+import { IsString, IsInt, MinLength, MaxLength, IsOptional } from 'class-validator';
 
 export class CreateUserDto implements IUser {
 

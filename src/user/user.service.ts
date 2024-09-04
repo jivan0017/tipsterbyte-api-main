@@ -1,5 +1,6 @@
-import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
+// import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
 import { hash } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,7 +9,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ReturnUserDto } from './dto/return-user.dto';
 import { UserType } from './enum/user-type.enum';
 import { PersonEntity } from './entities/person.entity';
-import {v4} from 'uuid';
+// import {v4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class UserService {
@@ -43,14 +45,17 @@ export class UserService {
 
         // Crea nuevo perfil
         let newProfile = new PersonEntity();
-        newProfile = {...createUserDto.profile};        
+        newProfile = {...createUserDto.profile};    
+        
+        console.log("profile >>> ", newProfile);
 
         const newUser =  this.userRepository.create({
             username: createUserDto.username,
             password: passwordHash,
             email: createUserDto.email,
-            activationCode: v4(),
-            typeUser: UserType.User
+            activationCode: uuidv4(),
+            typeUser: UserType.User,
+            // profile: newProfile,
         });
 
         newUser.profile = newProfile;
